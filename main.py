@@ -7,7 +7,6 @@ Created on Mon Apr 15 08:25:24 2019
 """
 # importy
 import random
-import os
 
 # options
 IGNORE_CHARS = (" \n")
@@ -157,35 +156,42 @@ print(
     5) Konec
       """)
 
-
-while True:
-    try:
-        vstup = int(input(">>> "))
-    except ValueError:
-        print("Neplatna moznost! ")
-        continue
-    if vstup == 1 or vstup == 2:
+def main():
+    while True:
         try:
-            if vstup == 1:
-                jedna()
-            else:
-                dva()
-        except FileNotFoundError:
-            print("Soubor nenalezen! ")
+            vstup = int(input(">>> "))
+        except ValueError:
+            print("Neplatna moznost! ")
             continue
+        if vstup == 1 or vstup == 2:
+            try:
+                if vstup == 1:
+                    jedna()
+                else:
+                    dva()
+            except FileNotFoundError:
+                print("Soubor nenalezen! ")
+                continue
+    
+        elif vstup == 3:
+            try:
+                tri()
+            except FileNotFoundError:
+                print("Soubor nenalezen! ")
+                continue
+    
+        elif vstup == 4:
+            ctyri()
+    
+        elif vstup == 5:
+            exit(0)
+    
+        else:
+            print("Neplatna moznost! ")
 
-    elif vstup == 3:
+if __name__ == '__main__':
+    while True:
         try:
-            tri()
-        except FileNotFoundError:
-            print("Soubor nenalezen! ")
-            continue
-
-    elif vstup == 4:
-        ctyri()
-
-    elif vstup == 5:
-        exit(0)
-
-    else:
-        print("Neplatna moznost! ")
+            main()
+        except KeyboardInterrupt:
+            print("\rTahle teda ne! Pro vypnuti použijte pětku! :C ")
